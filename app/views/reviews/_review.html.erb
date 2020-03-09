@@ -1,0 +1,41 @@
+<div class="row mb-2">
+  <div class="col-md-6 mx-auto">
+    <div class="card flex-md-row mb-4 box-shadow h-md-250">
+      <div class="card-body d-flex flex-column align-items-start">
+
+        <div class="mb-0 mx-auto">
+            <div class='fs-24 static-rating' data-score=<%= review.rating %>></div>
+        </div>
+
+        <div class="mx-auto">
+            <%= user_image(review.user) %>
+            <strong class="d-inline-block mb-2 text-muted"><%= review.user.first_name %>
+
+            <span class="mb-1 text-muted">reviewed <%= time_ago_in_words(review.created_at) %> ago </span>
+            <% if user_signed_in? && review.user_id == current_user.id %>
+              <%= link_to [@dish, review], method: :delete, class: 'text-muted', data: { confirm: "You sure about deleting your review?" } do %><i class="fa fa-trash-o" aria-hidden="true"></i><% end %>
+            <% end %>
+
+            </strong>
+        </div>
+
+        <p class="card-text mb-auto mx-auto"><%= review.body %></p>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+<script>
+ $('.static-rating').raty({
+   path: '/assets/',
+   readOnly: true,
+   score: function () {
+     return $(this).attr('data-score');
+   }
+ });
+ //reload stars/stop duplication
+ $('.static-rating').raty('reload');
+</script>
