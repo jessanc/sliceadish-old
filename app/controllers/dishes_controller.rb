@@ -6,11 +6,13 @@ class DishesController < ApplicationController
   end
 
   def show
+    @review = Review.new
+    @reviews = @dish.reviews
   end
 
   private
-
     def set_dish
      @dish = Dish.find(params[:id])
    end
+
 end

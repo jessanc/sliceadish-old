@@ -4,6 +4,11 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable, :confirmable, :omniauthable, :omniauth_providers => [:facebook]
   include ImageUploader.attachment(:image)
+  has_many :reviews, dependent: :destroy
+  has_many :reviewed_dishes, through: :reviews, source: :dish
+  def already_reviewed?(dish)
+    return reviewed_dishes.include?(dish)
+  end
   def self.new_with_session(params, session)
   super.tap do |user|
     if data = session["devise.facebook_data"] && session["devise.facebook_data"]["extra"]["raw_info"]

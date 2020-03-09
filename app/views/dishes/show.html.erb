@@ -33,5 +33,22 @@
 
   </div>
   <!-- Reviews -->
-<!-- todo: add reviews -->
+<div class="container text-center" id="reviews">
+  <hr>
+  <h4><strong>REVIEWS</strong></h4>
+  <% if @dish.reviews.present? %>
+    <p>Read helpful tips from other Slice a Dish customers.</p>
+  <% else %>
+    <p>There are currently no reviews for this dish.</p>
+  <% end %>
+  <%= render @reviews %>
+  <% if user_signed_in? %>
+    <% if current_user.already_reviewed?(@dish) %>
+
+    <% else %>
+    <%= render 'dishes/review_form' %>
+    <% end %>
+  <% end %>
+  <hr>
+</div>
 </div>
