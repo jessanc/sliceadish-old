@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20200309040625) do
+ActiveRecord::Schema.define(version: 20200309074526) do
 
   create_table "active_admin_comments", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string "namespace"
@@ -59,6 +59,13 @@ ActiveRecord::Schema.define(version: 20200309040625) do
     t.index ["user_id"], name: "index_reviews_on_user_id"
   end
 
+  create_table "subscriptions", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.bigint "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_subscriptions_on_user_id"
+  end
+
   create_table "users", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -76,10 +83,25 @@ ActiveRecord::Schema.define(version: 20200309040625) do
     t.string "provider"
     t.string "uid"
     t.text "image_data"
+    t.string "stripe_user_id"
+    t.string "stripe_subscription_id"
+    t.string "plan", default: "free"
+    t.string "slug"
+    t.string "address1"
+    t.string "address2"
+    t.string "city"
+    t.string "state"
+    t.string "zip"
+    t.string "phone_number"
+    t.string "special_instructions"
+    t.string "dietary_preferences"
+    t.string "delivery_day"
+    t.string "country"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
   add_foreign_key "reviews", "dishes"
   add_foreign_key "reviews", "users"
+  add_foreign_key "subscriptions", "users"
 end
