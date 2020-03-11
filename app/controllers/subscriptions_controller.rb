@@ -8,8 +8,15 @@ class SubscriptionsController < ApplicationController
   end
   def new
     @plan = params[:plan]
-    @plan_name = params[:plan_name]
-    @amount = params[:amount]
+    # @amount = params[:amount]
+    begin
+      plan_details = get_plan_details(params[:plan])
+    rescue
+      flash[:notice] = 'Not a valid plan.'
+      redirect_to(:pricing) and return
+    end
+    @amount = plan_details[0]
+    @plan_name = plan_details[1]
     @user = User.new
     @taxrate = 0.065
     render layout: "checkout"
@@ -58,9 +65,22 @@ class SubscriptionsController < ApplicationController
   end
   private
     def get_subscription_starttime
-    date  = Date.parse("Thursday")
-    delta = date > Date.today ? 0 : 7
-    newdate = date + delta
-    return newdate.to_time.to_i
-  end
+      date  = Date.parse("Thursday")
+      delta = date > Date.today ? 0 : 7
+      newdate = date + delta
+      return newdate.to_time.to_i
+    end
+    def get_plan_details(pln)
+      case pln
+        when nil  # current_user != nil, skip condition
+          raise "This is an exception"
+        when "four"  # current_user != current_user.is_admin?, skip condition
+          return 59.99, "Four meals" #amount, plan details
+        when "nine"  # and so on
+          return 69.99, "Nine meals"
+        else
+          raise "This is an exception"
+        end
+    end
+
 end

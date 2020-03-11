@@ -19,14 +19,15 @@
          </div>
          <%= image_tag('healthy.jpeg', height: 320, class: "card-img-top" ) %>
          <div class="card-body mx-auto">
-           <h1 class="card-title pricing-card-title">$59.99 <small class="text-muted">/ mo</small></h1>
+           <h1 class="card-title pricing-card-title">$59.99 <small class="text-muted">/ week</small></h1>
            <ul class="list-unstyled mt-3 mb-4">
              <li class="text-center">3 meals per week</li>
              <li class="text-center">Just $9.99 per person</li>
              <li class="text-center">No Commitment</li>
              <li class="text-center">Free Shipping</li>
            </ul>
-           <%= link_to 'Get started', new_subscription_path(:plan_name => 'Four meals', :plan => 'four', :amount => '59.99', :product => 'prod_GsT2WpYCyVMlo1'), class: "btn btn-secondary btn-info btn-block" %> <br/>
+           <%# TODO FIX THIS %>
+           <%= link_to 'Get started', new_subscription_path(:plan => 'four'), class: "btn btn-secondary btn-info btn-block" %> <br/>
          </div>
        </div>
    </div>
@@ -37,14 +38,14 @@
          </div>
          <%= image_tag('healthy.jpeg', height: 320, class: "card-img-top" ) %>
          <div class="card-body mx-auto">
-           <h1 class="card-title pricing-card-title">$79.99 <small class="text-muted">/ mo</small></h1>
+           <h1 class="card-title pricing-card-title">$79.99 <small class="text-muted">/ week</small></h1>
            <ul class="list-unstyled mt-3 mb-4">
              <li class="text-center">4 meals per week</li>
              <li class="text-center">Just $9.99 per person</li>
              <li class="text-center">No Commitment</li>
              <li class="text-center">Free Shipping</li>
            </ul>
-           <%= link_to 'Get started', new_subscription_path(:plan_name => 'Nine meals', :plan => 'nine', :amount => '79.99', :product => 'update_this'), class: "btn btn-secondary btn-info btn-block" %> <br/>
+           <%= link_to 'Get started', new_subscription_path(:plan => 'nine', :amount => '79.99'), class: "btn btn-secondary btn-info btn-block" %> <br/>
          </div>
        </div>
      </div>
