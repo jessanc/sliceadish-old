@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20200309074526) do
+ActiveRecord::Schema.define(version: 20200314001149) do
 
   create_table "active_admin_comments", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string "namespace"
@@ -44,6 +44,15 @@ ActiveRecord::Schema.define(version: 20200309074526) do
     t.text "description"
     t.text "image_data"
     t.string "cuisine"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.bigint "menu_id"
+    t.index ["menu_id"], name: "index_dishes_on_menu_id"
+  end
+
+  create_table "menus", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.date "start_date"
+    t.date "end_date"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -101,6 +110,7 @@ ActiveRecord::Schema.define(version: 20200309074526) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "dishes", "menus"
   add_foreign_key "reviews", "dishes"
   add_foreign_key "reviews", "users"
   add_foreign_key "subscriptions", "users"

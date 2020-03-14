@@ -6,6 +6,10 @@ ActiveAdmin.setup do |config|
   #
   config.site_title = "Sliceadish"
 
+  def resource_params
+[(params[resource_request_name] || params[resource_instance_name]).try(:permit!) || {}]
+end 
+
   # Set the link url for the title. For example, to take
   # users to your main site. Defaults to no link.
   #
