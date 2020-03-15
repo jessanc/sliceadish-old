@@ -2,6 +2,7 @@ class UsersController < ApplicationController
  before_action :authenticate_user!
  before_action :set_user, only: [:update, :subscription]
  def subscription
+  @subscription = current_user.subscription
  end
  def update
    if @user.update(user_params)
@@ -16,6 +17,6 @@ private
     @user = current_user
   end
   def user_params
-    params.require(:user).permit(:first_name, :last_name, :email, :avatar, :remove_avatar, :stripe_user_id, :stripe_subscription_id, :plan)
+    params.require(:user).permit(:first_name, :last_name, :email, :avatar, :remove_avatar)
   end
 end

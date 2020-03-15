@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20200315071225) do
+ActiveRecord::Schema.define(version: 20200315114318) do
 
   create_table "active_admin_comments", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string "namespace"
@@ -72,9 +72,12 @@ ActiveRecord::Schema.define(version: 20200315071225) do
   end
 
   create_table "subscriptions", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.string "stripe_user_id"
+    t.boolean "active", default: false, null: false
     t.bigint "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "meal_count"
     t.index ["user_id"], name: "index_subscriptions_on_user_id"
   end
 
@@ -95,10 +98,6 @@ ActiveRecord::Schema.define(version: 20200315071225) do
     t.string "provider"
     t.string "uid"
     t.text "image_data"
-    t.string "stripe_user_id"
-    t.string "stripe_subscription_id"
-    t.string "plan", default: "free"
-    t.string "slug"
     t.string "address1"
     t.string "address2"
     t.string "city"

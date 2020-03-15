@@ -15,6 +15,6 @@ Rails.application.routes.draw do
   get 'pricing' => 'subscriptions#pricing'
   get 'pick-your-meals', :to => 'subscriptions#complete', as: 'complete'
   resource :subscription
-
+  delete '/cancel_subscription' => 'subscriptions#destroy'
   get 'on-the-menu' => 'menus#menu', :as => :menu_selections
 end

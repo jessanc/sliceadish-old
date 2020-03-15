@@ -1,4 +1,4 @@
-<% if user_signed_in? && current_user.plan != 'free' %>
+<% if user_signed_in? && current_user.subscription.active? %>
 
   <div class="header" style="background-image: url(assets/healthy.jpg);">
     <div class="container" style="padding-top: 4rem; padding-bottom: 4rem;">
