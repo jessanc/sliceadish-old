@@ -11,4 +11,10 @@ Rails.application.routes.draw do
   resources :dishes do
     resources :reviews
   end
+
+  get 'pricing' => 'subscriptions#pricing'
+  get 'pick-your-meals', :to => 'subscriptions#complete', as: 'complete'
+  resource :subscription
+
+  get 'on-the-menu' => 'menus#menu', :as => :menu_selections
 end
