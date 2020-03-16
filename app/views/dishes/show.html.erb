@@ -1,0 +1,54 @@
+<div class="container pt-3">
+  <!-- Dish Intro -->
+  <div class="row">
+    <div class="col-md-12 col-lg-6">
+      <div class="card border-0">
+        <div class="card-body">
+          <h2 class="card-text"><%= @dish.title %></h2>
+          <p><%= @dish.description %></p><p class="text-muted">Restaurant: taste of india</p>
+            <!-- <div class="d-flex justify-content-between align-items-center">
+              <p><%#= @dish.description %></p>
+            </div> -->
+            <div class="container text-center">
+<!-- add stuff if we need -->
+           <p> Cusine : <%= @dish.cuisine %></p>
+            </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-12 col-lg-6">
+      <div class="card border-0">
+        <div class="card-body">
+          <% if @dish.image_data.blank? %>
+          <%# change image %>
+            <%= image_tag('logo.png', alt: "sliceadish", class: "card-img-top" ) %>
+          <% else %>
+            <%= link_to @dish do %>
+            <%= image_tag @dish.image_url(:original), alt: "sliceadish image", height: 'auto', width: 'auto', class: "card-img-top" %>
+            <% end %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+
+  </div>
+  <!-- Reviews -->
+<div class="container text-center" id="reviews">
+  <hr>
+  <h4><strong>REVIEWS</strong></h4>
+  <% if @dish.reviews.present? %>
+    <p>Read helpful tips from other Slice a Dish customers.</p>
+  <% else %>
+    <p>There are currently no reviews for this dish.</p>
+  <% end %>
+  <%= render @reviews %>
+  <% if user_signed_in? %>
+    <% if current_user.already_reviewed?(@dish) %>
+
+    <% else %>
+    <%= render 'dishes/review_form' %>
+    <% end %>
+  <% end %>
+  <hr>
+</div>
+</div>
