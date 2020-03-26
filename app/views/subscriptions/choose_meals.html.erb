@@ -1,0 +1,59 @@
+
+  <div class="header" style="background-image: url(assets/healthy.jpg);">
+    <div class="container" style="padding-top: 4rem; padding-bottom: 4rem;">
+      <h1 class="text-white text-center">Dishes for the week of <%= @menu.first.end_date.to_formatted_s(:long_ordinal) %></h1>
+    </div>
+  </div>
+
+  <div class="py-5 bg-light">
+    <div class="container">
+      <div class="row">
+
+      <% @menu.first.dishes.each do |dish| %>
+          <div class="mx-auto col-12 col-sm-8 col-md-6 col-lg-6 col-xl-4">
+            <div class="card mb-4 box-shadow" style="height: auto;">
+              <% if dish.image_data.blank? %>
+                <%= image_tag('logo.png', alt: "BlueFoodie", class: "card-img-top" ) %>
+              <% else %>
+                <%= link_to dish do %>
+                  <%= image_tag dish.image_url(:original), height: '240', width: 'auto', alt: "BlueFoodie image", class: "card-img-top d-none d-sm-block" %>
+                  <%# image_tag dish.image_url(:original), height: 'auto', width: 'auto', alt: "BlueFoodie image", class: "card-img-top d-block d-sm-none" %>
+                <% end %>
+              <% end %>
+              <div class="card-body">
+                <h6 class="card-text"><%= dish.title %></h6>
+                <small><%= dish.description %></small>
+                <%= button_to "+", :action => "add_to_cart" , :method => :post , :dish_id => dish.id %>
+                <%= button_to "-", :action => "remove_from_cart" , :method => :post , :dish_id=> dish.id %>
+              </div>
+            </div>
+          </div>
+      <% end %>
+
+      <div class="cart-layout">
+        <p> Choose your meals </p>
+        <%= button_to "Clear", :action => "clear_cart" , :method => :post%>
+        <table id="line_items">
+          <tr>
+            <th>Dish</th>
+            <th>Qty</th>
+          </tr>
+
+          <% @cart.each do |key, value|%>
+            <tr class="<%= cycle :odd, :even %>">
+              <td><%=h key.title %></td>
+              <td><%=h value%></td>
+            </tr>
+          <% end %>
+        </table>
+        <%= link_to 'Checkout', new_subscription_path(:plan => params[:plan]), class: "btn btn-secondary btn-info btn-block" %> <br/>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+      </div>
+      </div>
+    </div>
+  </div>

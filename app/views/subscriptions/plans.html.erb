@@ -5,11 +5,11 @@
    </div>
  </div>
 <!-- Pick Your Plan -->
- <div class="pricing-header px-3 py-3 pt-md-5 pb-md-4 mx-auto text-center">
+ <div class="plans-header px-3 py-3 pt-md-5 pb-md-4 mx-auto text-center">
    <h1 class="display-4">Pick Your Plan</h1>
    <p class="lead">Pick your perfect plan, or whatever plan you want.</p>
  </div>
-<!-- Pricing Plans -->
+<!-- Plans -->
  <div class="container">
    <div class="row">
      <div class="mx-auto col-12 col-md-8 col-lg-6 col-xl-6">
@@ -27,7 +27,7 @@
              <li class="text-center">Free Shipping</li>
            </ul>
            <%# TODO FIX THIS %>
-           <%= link_to 'Get started', new_subscription_path(:plan => 'four'), class: "btn btn-secondary btn-info btn-block" %> <br/>
+           <%= link_to 'Choose', choose_meals_path(:plan => 'four'), class: "btn btn-secondary btn-info btn-block" %> <br/>
          </div>
        </div>
    </div>
@@ -45,7 +45,7 @@
              <li class="text-center">No Commitment</li>
              <li class="text-center">Free Shipping</li>
            </ul>
-           <%= link_to 'Get started', new_subscription_path(:plan => 'nine', :amount => '79.99'), class: "btn btn-secondary btn-info btn-block" %> <br/>
+           <%= link_to 'Choose', choose_meals_path(:plan => 'nine'), class: "btn btn-secondary btn-info btn-block" %> <br/>
          </div>
        </div>
      </div>
