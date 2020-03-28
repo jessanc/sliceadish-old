@@ -1,0 +1,31 @@
+<div class="header" style="background-image: url(assets/healthy.jpg);">
+  <div class="container" style="padding-top: 4rem; padding-bottom: 4rem;">
+    <h1 class="text-white text-center">Dishes</h1>
+  </div>
+</div>
+<div class="py-5 bg-light">
+  <div class="container">
+    <div class="row">
+    <% @dishes.each_with_index do |dish| %>
+      <div class="mx-auto col-12 col-sm-8 col-md-6 col-lg-6 col-xl-4">
+        <div class="card mb-4 box-shadow" style="height: auto;">
+          <% if dish.image_data.blank? %>
+            <%= image_tag('logo.png', alt: "Slice a Dish", class: "card-img-top" ) %>
+          <% else %>
+            <%= link_to dish do %>
+              <%= image_tag dish.image_url(:original), height: '240', width: 'auto', alt: "Slice a dish image", class: "card-img-top d-none d-sm-block" %>
+              <%= image_tag dish.image_url(:original), height: 'auto', width: 'auto', alt: "Slice a dish image", class: "card-img-top d-block d-sm-none" %>
+            <% end %>
+          <% end %>
+            <div class="card-body">
+              <h6 class="card-text"><%= dish.title %></h6>
+              <small><%= dish.description %></small>
+              <hr>
+              <p class="text-muted"> restaurant : Taste of India</p>
+            </div>
+        </div>
+      </div>
+    <% end %>
+    </div>
+  </div>
+</div>
