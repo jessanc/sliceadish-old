@@ -6,6 +6,7 @@ class User < ApplicationRecord
   include ImageUploader.attachment(:image)
   has_many :reviews, dependent: :destroy
   has_many :reviewed_dishes, through: :reviews, source: :dish
+  has_one :subscription, dependent: :destroy
   def already_reviewed?(dish)
     return reviewed_dishes.include?(dish)
   end
@@ -26,5 +27,9 @@ def self.from_omniauth(auth)
    user.last_name = auth.info.last_name
    user.save!
  end
+end
+after_create :create_subscription
+def create_subscription
+  Subscription.create(user_id: id) if subscription.nil?
 end
 end
