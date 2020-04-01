@@ -25,24 +25,18 @@
 
 
  body {
-   font-size: 1em !important;
+   font-size: 1em;
    font-weight: 700;
    font-family: 'Ubuntu', sans-serif;
  }
 
-
- // font-family: 'Amiri', serif;
- // font-family: 'Josefin Slab', serif;
- // font-family: 'Sulphur Point', sans-serif;
- // font-family: 'Fjord One', serif;
- // font-family: 'IM Fell DW Pica', serif;
  .flex-container {
    display: flex;
    flex-wrap: nowrap;
    background-color: white;
  }
 
- .flex-container > div {
+ .flex-container{
    background-color: #ffffff;
    margin: 10px;
    text-align: center;
